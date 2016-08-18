@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\Log;
 class WechatController extends Controller
 {
 
+    protected $wechat;
+
+    public function __construct()
+    {
+        $this->wechat = app('wechat');
+    }
+
     /**
      * 处理微信的请求消息
      *
@@ -16,13 +23,29 @@ class WechatController extends Controller
     {
         Log::info('request arrived.'); # 注意：Log 为 Laravel 组件，所以它记的日志去 Laravel 日志看，而不是 EasyWeChat 日志
 
-        $wechat = app('wechat');
-        $wechat->server->setMessageHandler(function($message){
+        $this->wechat->server->setMessageHandler(function($message){
             return "欢迎关注\"记撸\"！";
         });
 
         Log::info('return response.');
 
-        return $wechat->server->serve();
+        return $this->wechat->server->serve();
+    }
+
+    public function setMenu()
+    {
+        $buttons = [
+            [
+                "type" => "view",
+                "name" => "进入应用",
+                "url"  => "http://jilu.shmeta.com/"
+            ],
+            [
+                "type" => "view",
+                "name" => "测试用户",
+                "url"  => "http://jiluapi.shmeta.com/v1/wechat_user"
+            ],
+        ];
+        $this->wechat->menu->add($buttons);
     }
 }
