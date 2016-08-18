@@ -9,4 +9,3 @@ Route::get('/wechat_user', function () {
     dd($user);
 });
 
-Route::get('/set-wechat-menu', 'WechatController@setMenu');
