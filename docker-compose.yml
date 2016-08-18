@@ -1,0 +1,52 @@
+version: '2'
+
+networks:
+  proxy-tier:
+    external:
+      name: nginx-proxy
+  data-tier:
+    driver: bridge
+
+services:
+  storage:
+    restart: always
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: jilu
+      MYSQL_ROOT_PASSWORD: mysqlpassword
+    networks:
+      - data-tier
+
+  api:
+    image: webdevops/php-nginx:alpine-3
+    restart: always
+    volumes:
+      - ./Api:/application/code
+      - ./Entrypoint/Api:/opt/docker/provision/entrypoint.d
+    environment:
+      - WEB_DOCUMENT_ROOT=/application/code/public
+      - WEB_ALIAS_DOMAIN=jiluapi.shmeta.com
+      - VIRTUAL_HOST=jiluapi.shmeta.com
+#        - LETSENCRYPT_HOST=jiluapi.shmeta.com
+#        - LETSENCRYPT_EMAIL=luba@shmeta.com
+    ports:
+      - "8185:80"
+    networks:
+      - proxy-tier
+      - data-tier
+
+  client:
+    image: node:6
+    restart: always
+    volumes:
+      - ./Client:/usr/src/app
+      - ./Entrypoint/Client:/usr/src/Entrypoint
+    command: bash /usr/src/Entrypoint/production.sh
+    environment:
+      - VIRTUAL_HOST=jilu.shmeta.com
+#        - LETSENCRYPT_HOST=jilu.shmeta.com
+#        - LETSENCRYPT_EMAIL=luba@shmeta.com
+    ports:
+      - "8187:8080"
+    networks:
+      - proxy-tier

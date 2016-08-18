@@ -1,0 +1,26 @@
+.clock {
+  font-size: 3em;
+  font-family: "Courier New", sans-serif;
+}
+
+.startButton {
+  color: #0af;
+  font-size: 5em;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.startButton:active {
+  color: #08f;
+}
+
+.startLink {
+  color: #0f8;
+  font-size: 5em;
+  text-decoration: none;
+}
+
+.startLink:active {
+  color: #0f5;
+}
