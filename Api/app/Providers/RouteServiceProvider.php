@@ -71,7 +71,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::group([
-            'middleware' => ['api', 'wechat.oauth', 'auth:api'],
+            'middleware' => ['api', 'auth:api'], // 'wechat.oauth'
             'namespace' => $this->namespace,
             'prefix' => 'v1',
         ], function ($router) {
