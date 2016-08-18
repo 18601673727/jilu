@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
 cd /application/code
-composer install
-ls -al $(which composer) | grep composer
-php artisan migrate:install
+composer install --no-plugins --no-scripts
 php artisan migrate
