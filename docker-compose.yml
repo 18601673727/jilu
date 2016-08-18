@@ -43,7 +43,7 @@ services:
       - ./Entrypoint/Client:/usr/src/Entrypoint
     command: bash /usr/src/Entrypoint/production.sh
     environment:
-      - VIRTUAL_HOST=jilu.shmeta.com
+      - VIRTUAL_HOST=jilucdn.shmeta.com
 #        - LETSENCRYPT_HOST=jilu.shmeta.com
 #        - LETSENCRYPT_EMAIL=luba@shmeta.com
     ports:
