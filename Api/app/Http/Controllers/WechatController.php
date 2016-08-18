@@ -43,7 +43,7 @@ class WechatController extends Controller
             [
                 "type" => "view",
                 "name" => "测试用户",
-                "url"  => "http://jiluapi.shmeta.com/v1/wechat_user"
+                "url"  => "http://jiluapi.shmeta.com/wechat_user"
             ],
         ];
         $this->wechat->menu->add($buttons);
