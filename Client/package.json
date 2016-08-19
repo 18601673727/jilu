@@ -13,6 +13,8 @@
     "react-dom": "^15.3.0",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
+    "redux-axios": "0.0.2",
+    "redux-logger": "^2.6.1",
     "timer-stopwatch": "^0.2.0",
     "whatwg-fetch": "^1.0.0"
   },

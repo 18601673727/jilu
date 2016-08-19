@@ -1,24 +1,24 @@
-/**
- * React App SDK (https://github.com/kriasoft/react-app)
- *
- * Copyright © 2015-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import axiosMiddleware from 'redux-axios';
+import clients from './clients';
+import event from '../reducers/event';
 
-import { createStore } from 'redux';
+const middlewares = [];
 
-// Centralized application state
-// For more information visit http://redux.js.org/
-const store = createStore((state, action) => {
-  // TODO: Add action handlers (aka "reduces")
-  switch (action) {
-    case 'COUNT':
-      return { ...state, count: (state.count || 0) + 1 };
-    default:
-      return state;
-  }
-});
+if (process.env.NODE_ENV === `development`) {
+  const createLogger = require(`redux-logger`);
+  const logger = createLogger();
+  middlewares.push(logger);
+}
+
+middlewares.push(axiosMiddleware(clients));
+const store = createStore(
+  combineReducers({
+    event,
+  }),
+  applyMiddleware(
+    ...middlewares
+  )
+);
 
 export default store;

@@ -13,7 +13,7 @@ const config = {
 
   // Web analytics settings
   analytics: {
-    google: { trackingID: 'UA-XXXXX-Y' },
+    google: { trackingID: 'UA-82814335-1' },
   },
 
   // Deployment settings

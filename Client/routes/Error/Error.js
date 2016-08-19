@@ -33,8 +33,8 @@ class ErrorPage extends React.Component {
     if (this.props.error) console.error(this.props.error); // eslint-disable-line no-console
 
     const [code, title] = this.props.error && this.props.error.status === 404 ?
-      ['404', 'Page not found'] :
-      ['Error', 'Oups, something went wrong'];
+      ['404', 'NOT FOUND'] :
+      ['Error', '悲剧了,我们的代码有点问题'];
 
     return (
       <div className={s.container}>
@@ -43,12 +43,12 @@ class ErrorPage extends React.Component {
           <p className={s.title}>{title}</p>
           {code === '404' &&
             <p className={s.text}>
-              The page you're looking for does not exist or an another error occurred.
+              您正在试图访问的页面没有找到,<br/><br/>或是还没有开发完成,
             </p>
           }
+
           <p className={s.text}>
-            <a href="/" onClick={this.goBack}>Go back</a>, or head over to the&nbsp;
-            <Link to="/">home page</Link> to choose a new direction.
+            您可<a href="/" onClick={this.goBack}>后退</a>,&nbsp;或者前往&nbsp;<Link to="/">首页</Link>。
           </p>
         </main>
       </div>
