@@ -20,6 +20,8 @@ services:
   laravel:
     image: webdevops/php-nginx:alpine-3
     restart: always
+    depends_on:
+      - storage
     volumes:
       - ./Api:/application/code
       - ./Entrypoint/Api:/opt/docker/provision/entrypoint.d
