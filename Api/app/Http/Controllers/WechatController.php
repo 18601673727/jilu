@@ -42,8 +42,8 @@ class WechatController extends Controller
             ],
             [
                 "type" => "view",
-                "name" => "测试用户",
-                "url"  => "http://jiluapi.shmeta.com/wechat_user"
+                "name" => "我的记录",
+                "url"  => "http://jilu.shmeta.com/me/"
             ],
         ];
 

@@ -6,8 +6,10 @@ Route::get('/', function () {
 
 Route::get('/set-wechat-menu', 'WechatController@setMenu');
 
-Route::get('/wechat_user', function () {
-    $user = session('wechat.oauth_user'); // 拿到授权用户资料
-    dd($user);
+Route::group(['middleware' => ['wechat.oauth']], function () {
+    Route::get('/me', function () {
+        $user = session('wechat.oauth_user'); // 拿到授权用户资料
+        dd($user);
+    });
 });
 
