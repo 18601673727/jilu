@@ -54,7 +54,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::group([
-            'middleware' => ['web', 'wechat.oauth'],
+            'middleware' => ['web'], //'wechat.oauth'
             'namespace' => $this->namespace,
         ], function ($router) {
             require base_path('routes/web.php');
