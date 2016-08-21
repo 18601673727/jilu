@@ -4,6 +4,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::any('/wechat', 'WechatController@serve');
+
 Route::get('/set-wechat-menu', 'WechatController@setMenu');
 
 Route::group(['middleware' => ['wechat.oauth']], function () {
