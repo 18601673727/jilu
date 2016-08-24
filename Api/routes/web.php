@@ -4,6 +4,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
 Route::any('/wechat', 'WechatController@serve');
 
 Route::get('/set-wechat-menu', 'WechatController@setMenu');

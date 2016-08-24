@@ -1,7 +1,9 @@
 window._ = require('lodash');
 window.$ = window.jQuery = require('jquery');
 window.moment = require('moment');
+require('moment/locale/zh-cn');
 require("moment-duration-format");
+
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

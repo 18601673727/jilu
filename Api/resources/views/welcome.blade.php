@@ -1,84 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout')
 
-        <title>记撸</title>
+@section('title', '仪表盘')
 
-        <link rel="stylesheet" href="/css/app.css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway';
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Coming soon...
-                </div>
-            </div>
+@section('content')
+    <div class="title m-b-md">
+        <div id="stopwatch">
+            <div class="time-display">00:00:00.00</div>
+            <button class="start-button">走你</button>
+            <button class="record-button" style="display: none;">到位</button>
+            <button class="stop-button" style="display: none;">重来</button>
         </div>
+    </div>
+@endsection
+@section('script')
+    <script>
+        function Stopwatch(selector) {
+            this.stopwatch = $(selector);
+            this.timeDisplay = this.stopwatch.find('.time-display').first();
+            this.startButton = this.stopwatch.find('.start-button').first();
+            this.stopButton = this.stopwatch.find('.stop-button').first();
+            this.recordButton = this.stopwatch.find('.record-button').first();
+            this.timer = 0;
+            this.startedAt = null;
+            this.endedAt = null;
 
-        <script src="js/app.js"></script>
-    </body>
-</html>
+            this.init();
+        }
+
+        Stopwatch.prototype.init = function () {
+            var self = this;
+
+            self.startButton.on('click', function (e) {
+                e.preventDefault();
+                self.start();
+
+                self.startButton.hide();
+                self.stopButton.show();
+                self.recordButton.show();
+            });
+
+            self.stopButton.on('click', function (e) {
+                e.preventDefault();
+                self.stop();
+
+                self.startButton.show();
+                self.stopButton.hide();
+                self.recordButton.hide();
+            });
+
+            self.recordButton.on('click', function (e) {
+                e.preventDefault();
+                window.location.href = '/record';
+            });
+        };
+
+        Stopwatch.prototype.start = function () {
+            this.startedAt = moment();
+
+            // Start a infinite loop to count up
+            this.timer = setInterval(function () {
+                var diff = moment().diff(moment(this.startedAt));
+                this.timeDisplay.html(moment.duration(diff, "ms").format({
+                    template: "h:mm:ss",
+                    precision: 2,
+                    trim: false
+                }));
+            }.bind(this), 50);
+
+            console.log(this);
+        };
+
+        Stopwatch.prototype.stop = function () {
+            clearInterval(this.timer);
+            this.endedAt = moment.now();
+            this.timeDisplay.html('00:00:00.00');
+        };
+
+        var stopwatch = new Stopwatch('#stopwatch');
+    </script>
+@endsection
