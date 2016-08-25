@@ -50,7 +50,7 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        return view('event.edit');
+        return view('event.edit')->with('data', Event::findOrFail($id));
     }
 
     /**
@@ -62,7 +62,11 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return Event::where($id)->update($request->all());
+        $data = Event::findOrFail($id);
+
+        if ($data->update($request->all())) {
+            return $data;
+        }
     }
 
     /**

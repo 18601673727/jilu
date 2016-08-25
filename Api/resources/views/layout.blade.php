@@ -12,9 +12,6 @@
 </head>
 <body>
 <div class="flex-center position-ref full-height">
-    <div class="nav">
-        <img src="image/logo.png" alt="jilu">
-    </div>
     {{--@if (Route::has('login'))--}}
         {{--<div class="top-right links">--}}
             {{--<a href="{{ url('/login') }}">Login</a>--}}
@@ -24,6 +21,14 @@
 
     <div class="content">
         @yield('content')
+    </div>
+
+    <div id="toast" style="display: none;">
+        <div class="weui_mask_transparent"></div>
+        <div class="weui_toast">
+            <i class="weui_icon_toast"></i>
+            <p class="weui_toast_content"></p>
+        </div>
     </div>
 </div>
 
