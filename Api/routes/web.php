@@ -4,6 +4,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('events', 'EventController');
+
 Route::get('/login', function () {
     return view('login');
 })->name('login');

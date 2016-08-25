@@ -21,8 +21,8 @@ class CreateEventsTable extends Migration
             $table->text('reviews')->nullable();
             $table->ipAddress('ip')->nullable();
             $table->boolean('published')->default(true);
-            $table->timestamp('started_at');
-            $table->timestamp('ended_at');
+            $table->bigInteger('started_at')->unsigned();
+            $table->bigInteger('ended_at')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -14,7 +14,7 @@
 
 .nav {
   position: absolute;
-  top: 30px;
+  top: 40px;
 }
 
 .top-right {
@@ -24,11 +24,7 @@
 }
 
 .content {
-  text-align: center;
-}
-
-.title {
-  font-size: 84px;
+  //padding-top: 180px;
 }
 
 .links > a {
@@ -41,45 +37,7 @@
   text-transform: uppercase;
 }
 
-.m-b-md {
-  margin-bottom: 30px;
-}
-
 .time-display {
   font-size: 48px;
   font-family: "Courier New", sans-serif;
-}
-
-.start-button,
-.stop-button,
-.record-button {
-  margin: 0 34px;
-  font-size: 30px;
-  border: none;
-  outline: none;
-  background: transparent;
-}
-
-.start-button {
-  color: #0af;
-
-  &:active {
-    color: #08f;
-  }
-}
-
-.stop-button {
-  color: #fa0;
-
-  &:active {
-    color: #f80;
-  }
-}
-
-.record-button {
-  color: #0f8;
-
-  &:active {
-    color: #0f5;
-  }
 }

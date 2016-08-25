@@ -3,13 +3,11 @@
 @section('title', '仪表盘')
 
 @section('content')
-    <div class="title m-b-md">
-        <div id="stopwatch">
-            <div class="time-display">00:00:00.00</div>
-            <button class="start-button">走你</button>
-            <button class="record-button" style="display: none;">到位</button>
-            <button class="stop-button" style="display: none;">重来</button>
-        </div>
+    <div id="stopwatch">
+        <div class="time-display">0:00:00.00</div>
+        <button class="weui_btn weui_btn_primary start-button">走你</button>
+        <button class="weui_btn weui_btn_primary record-button" style="display: none;">到位</button>
+        <button class="weui_btn weui_btn_warn stop-button" style="display: none;">重来</button>
     </div>
 @endsection
 @section('script')
@@ -21,6 +19,7 @@
             this.stopButton = this.stopwatch.find('.stop-button').first();
             this.recordButton = this.stopwatch.find('.record-button').first();
             this.timer = 0;
+            this.diff = 0;
             this.startedAt = null;
             this.endedAt = null;
 
@@ -50,7 +49,8 @@
 
             self.recordButton.on('click', function (e) {
                 e.preventDefault();
-                window.location.href = '/record';
+                self.stop();
+                self.record();
             });
         };
 
@@ -59,8 +59,8 @@
 
             // Start a infinite loop to count up
             this.timer = setInterval(function () {
-                var diff = moment().diff(moment(this.startedAt));
-                this.timeDisplay.html(moment.duration(diff, "ms").format({
+                this.diff = moment().diff(moment(this.startedAt));
+                this.timeDisplay.html(moment.duration(this.diff, "ms").format({
                     template: "h:mm:ss",
                     precision: 2,
                     trim: false
@@ -72,8 +72,24 @@
 
         Stopwatch.prototype.stop = function () {
             clearInterval(this.timer);
-            this.endedAt = moment.now();
-            this.timeDisplay.html('00:00:00.00');
+            this.timeDisplay.html('0:00:00.00');
+        };
+
+        Stopwatch.prototype.record = function () {
+            this.recordButton.addClass('weui_btn_disabled');
+
+            this.endedAt = moment();
+
+            var data = {
+                name: "撸管",
+                score: 5,
+                started_at: this.startedAt.valueOf(),
+                ended_at: this.endedAt.valueOf(),
+            };
+
+            $.post('/events', data, function(event) {
+                window.location.href = '/events/' + event.id + '/edit';
+            });
         };
 
         var stopwatch = new Stopwatch('#stopwatch');

@@ -4,6 +4,11 @@ window.moment = require('moment');
 require('moment/locale/zh-cn');
 require("moment-duration-format");
 
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
