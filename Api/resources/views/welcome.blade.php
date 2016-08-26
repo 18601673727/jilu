@@ -5,8 +5,9 @@
 @section('content')
     <div class="nav">
         <img src="image/logo.png" alt="jilu">
+        {{ dd(session('wechat.oauth_user')) }}
     </div>
-    
+
     <div id="stopwatch">
         <div class="time-display">0:00:00.00</div>
         <button class="weui_btn weui_btn_primary start-button">走你</button>
