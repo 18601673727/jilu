@@ -25,6 +25,9 @@ class CreateEventsTable extends Migration
             $table->bigInteger('ended_at')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

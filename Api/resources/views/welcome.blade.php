@@ -16,6 +16,7 @@
             <img class="pull-left" src="session('wechat.oauth_user')->avatar" alt="">
             <a class="pull-right" href="/events">{{ session('wechat.oauth_user')->nickname }} 的记录</a>
         </div>
+        <input type="hidden" id="user-id" value="{{ auth()->user()->id }}">
     </div>
 @endsection
 @section('script')
@@ -93,6 +94,7 @@
                 score: 5,
                 started_at: this.startedAt.valueOf(),
                 ended_at: this.endedAt.valueOf(),
+                user_id: $('#user-id').val(),
             };
 
             $.post('/events', data, function(event) {
