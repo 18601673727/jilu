@@ -27,8 +27,8 @@ services:
       - ./Entrypoint/Api:/opt/docker/provision/entrypoint.d
     environment:
       - WEB_DOCUMENT_ROOT=/application/code/public
-      - WEB_ALIAS_DOMAIN=jilucdn.shmeta.com
-      - VIRTUAL_HOST=jilucdn.shmeta.com
+      - WEB_ALIAS_DOMAIN=jilu.shmeta.com
+      - VIRTUAL_HOST=jilu.shmeta.com
 #        - LETSENCRYPT_HOST=jilucdn.shmeta.com
 #        - LETSENCRYPT_EMAIL=luba@shmeta.com
     ports:
