@@ -41,3 +41,15 @@ a:hover {
    * active/hover state. */
   outline: 0;
 }
+
+.clearfix {
+  clear: both;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
