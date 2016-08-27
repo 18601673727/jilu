@@ -1,5 +1,7 @@
 <?php
 
+use App\User;
+
 Route::get('/', function () {
     $user = User::where('wechat_id', session('wechat.oauth_ueer')->id)->first();
 
