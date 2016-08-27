@@ -3,11 +3,11 @@
 use App\User;
 
 Route::get('/', function () {
-    $user = User::where('wechat_id', session('wechat.oauth_ueer')->id)->first();
+    $user = User::where('wechat_id', session('wechat.oauth_user')->id)->first();
 
     if (!$user) {
         $user = User::create([
-            'wechat_id' => session('wechat.oauth_ueer')->id,
+            'wechat_id' => session('wechat.oauth_user')->id,
         ]);
     }
 

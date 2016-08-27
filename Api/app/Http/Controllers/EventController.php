@@ -17,7 +17,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        return Event::all();
+        return view('event.list')->with('data', Event::all());
     }
 
     /**
