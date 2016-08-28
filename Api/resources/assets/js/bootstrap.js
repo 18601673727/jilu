@@ -1,8 +1,11 @@
-window.$ = window.jQuery = require('jquery');
-window.moment = require('moment');
-require('jquery.rateit');
-require('moment/locale/zh-cn');
-require("moment-duration-format");
+import jquery from 'jquery';
+import * as moment from 'moment';
+import 'moment-duration-format';
+import 'moment/locale/zh-cn';
+import 'jquery.rateit';
+
+window.$ = window.jQuery = jquery;
+window.moment = moment;
 
 $.ajaxSetup({
   headers: {
