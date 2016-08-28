@@ -1,11 +1,12 @@
 import jquery from 'jquery';
+window.$ = window.jQuery = jquery;
+
 import * as moment from 'moment';
 import 'moment-duration-format';
 import 'moment/locale/zh-cn';
-import 'jquery.rateit';
-
-window.$ = window.jQuery = jquery;
 window.moment = moment;
+
+import 'jquery.rateit';
 
 $.ajaxSetup({
   headers: {
