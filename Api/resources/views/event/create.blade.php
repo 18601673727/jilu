@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="nav">
-        <img src="/public/image/logo.png" alt="jilu">
+        <img src="/image/logo.png" alt="jilu">
     </div>
 
     <div id="stopwatch">
