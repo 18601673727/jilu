@@ -17,7 +17,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('event.list')->with('data', Event::where('user_id', auth()->user()->id)->get());
+        return view('event.list')->with('data', Event::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get());
     }
 
     /**
