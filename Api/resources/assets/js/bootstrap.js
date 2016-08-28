@@ -15,10 +15,11 @@ import $ from 'jquery';
 import moment from 'moment';
 import 'moment-duration-format';
 import 'moment/locale/zh-cn';
-import 'jquery.rateit';
 
 window.$ = window.jQuery = $;
 window.moment = moment;
+
+require('jquery.rateit');
 
 $.ajaxSetup({
   headers: {
