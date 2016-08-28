@@ -38,7 +38,7 @@ class WechatController extends Controller
             [
                 "type" => "view",
                 "name" => "进入应用",
-                "url"  => "http://jilu.shmeta.com/"
+                "url"  => "http://jilu.shmeta.com/events/create"
             ],
             [
                 "type" => "view",

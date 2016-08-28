@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="nav">
-        <img src="image/logo.png" alt="jilu">
+        <img src="{{ public_path('image/logo.png') }}" alt="jilu">
     </div>
 
     <div id="stopwatch">
