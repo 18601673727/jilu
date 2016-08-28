@@ -10,7 +10,7 @@ Route::group(['middleware' => ['wechat.oauth']], function () {
         $user = App\User::where('wechat_id', session('wechat.oauth_user')->id)->first();
 
         if (!$user) {
-            $user = User::create([
+            $user = App\User::create([
                 'wechat_id' => session('wechat.oauth_user')->id,
             ]);
         }

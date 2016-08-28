@@ -3,24 +3,26 @@
 @section('title', '仪表盘')
 
 @section('content')
-    <div class="nav">
+    <div class="header">
         <img src="/image/logo.png" alt="jilu">
     </div>
 
-    <div class="avatar">
-        <img src="{{ session('wechat.oauth_user')->avatar }}" alt="{{ session('wechat.oauth_user')->nickname }}">
+    <div class="body">
+        <div id="stopwatch">
+            <div class="time-display">0:00:00.00</div>
+            <div class="weui_btn_area">
+                <button class="weui_btn weui_btn_primary start-button">走你</button>
+                <button class="weui_btn weui_btn_primary record-button" style="display: none;">到位</button>
+                <button class="weui_btn weui_btn_warn stop-button" style="display: none;">重来</button>
+            </div>
+            <input type="hidden" id="user-id" value="{{ auth()->user()->id }}">
+        </div>
     </div>
 
-    <div id="stopwatch">
-        <div class="time-display">0:00:00.00</div>
-        <button class="weui_btn weui_btn_primary start-button">走你</button>
-        <button class="weui_btn weui_btn_primary record-button" style="display: none;">到位</button>
-        <button class="weui_btn weui_btn_warn stop-button" style="display: none;">重来</button>
-        <input type="hidden" id="user-id" value="{{ auth()->user()->id }}">
-    </div>
-
-    <div class="navbar-fixed-bottom">
-        <a class="weui_btn weui_btn_plain_default" href="/events">{{ session('wechat.oauth_user')->nickname }} 的记录</a>
+    <div class="weui_extra_area">
+        <div class="weui_btn_area">
+            <a class="weui_btn weui_btn_plain_default" href="/events">{{ session('wechat.oauth_user')->nickname }} 的记录</a>
+        </div>
     </div>
 @endsection
 @section('script')

@@ -1,3 +1,7 @@
+.full-height {
+  height: 100%;
+}
+
 .clearfix {
   clear: both;
 }
@@ -10,26 +14,34 @@
   float: right;
 }
 
-.full-height {
-  height: 100%;
-}
-
-.flex-center {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-
 .position-ref {
   position: relative;
 }
 
-.top-right {
+.position-abs {
   position: absolute;
-  right: 10px;
-  top: 18px;
 }
 
 .text-left {
   text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.container {
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.header {
+  text-align: center;
+  padding: 1em 0px;
+
+  img {
+    margin: auto;
+    width: 50%;
+  }
 }

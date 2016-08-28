@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
 </head>
 <body>
-<div class="flex-center position-ref full-height">
+<div class="container">
     {{--@if (Route::has('login'))--}}
         {{--<div class="top-right links">--}}
             {{--<a href="{{ url('/login') }}">Login</a>--}}
@@ -19,9 +19,7 @@
         {{--</div>--}}
     {{--@endif--}}
 
-    <div class="content">
-        @yield('content')
-    </div>
+    @yield('content')
 
     <div id="toast" style="display: none;">
         <div class="weui_mask_transparent"></div>

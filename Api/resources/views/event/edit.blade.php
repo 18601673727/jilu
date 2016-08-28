@@ -3,7 +3,7 @@
 @section('title', substr($data->created_at, 5, 11) .'的记录')
 
 @section('content')
-    <div class="nav bg-event">
+    <div class="header time-summary">
         {{ round(($data->ended_at - $data->started_at) / 1000, 1) }} 秒
     </div>
 
@@ -61,7 +61,7 @@
                    $('#toast').show().find('.weui_toast_content').html('已完成');
                    setTimeout(function () {
                        $('#toast').hide();
-                       window.location.href = '/';
+                       window.location.href = '/events';
                    }, 2000);
                }
            });

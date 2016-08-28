@@ -41,3 +41,9 @@ a:hover {
    * active/hover state. */
   outline: 0;
 }
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

@@ -32,7 +32,7 @@ services:
 #        - LETSENCRYPT_HOST=jilucdn.shmeta.com
 #        - LETSENCRYPT_EMAIL=luba@shmeta.com
     ports:
-      - "8188:80"
+      - "8184:80"
     networks:
       - proxy-tier
       - data-tier
@@ -49,6 +49,6 @@ services:
 ##        - LETSENCRYPT_HOST=jilu.shmeta.com
 ##        - LETSENCRYPT_EMAIL=luba@shmeta.com
 #    ports:
-#      - "8187:8080"
+#      - "8185:8080"
 #    networks:
 #      - proxy-tier
