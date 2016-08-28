@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="nav">
-        <img src="{{ public_path('image/logo.png') }}" alt="jilu">
+        <img src="/public/image/logo.png" alt="jilu">
     </div>
 
     <div id="stopwatch">
@@ -12,8 +12,10 @@
         <button class="weui_btn weui_btn_primary start-button">走你</button>
         <button class="weui_btn weui_btn_primary record-button" style="display: none;">到位</button>
         <button class="weui_btn weui_btn_warn stop-button" style="display: none;">重来</button>
+
+        <hr>
         <div class="clearfix">
-            <img class="pull-left" src="session('wechat.oauth_user')->avatar" alt="">
+            <img class="pull-left" src="{{ session('wechat.oauth_user')->avatar }}" alt="">
             <a class="pull-right" href="/events">{{ session('wechat.oauth_user')->nickname }} 的记录</a>
         </div>
         <input type="hidden" id="user-id" value="{{ auth()->user()->id }}">
