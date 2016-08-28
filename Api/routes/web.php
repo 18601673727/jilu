@@ -19,6 +19,8 @@ Route::group(['middleware' => ['wechat.oauth']], function () {
         if (!auth()->check()) {
             auth()->login($user);
         }
+
+        return redirect()->intended('/events/create');
     })->name('login');
 
     Route::group(['middleware' => ['auth']], function () {
