@@ -1,19 +1,3 @@
-import jquery from 'jquery';
-window.$ = window.jQuery = jquery;
-
-import * as moment from 'moment';
-import 'moment-duration-format';
-import 'moment/locale/zh-cn';
-window.moment = moment;
-
-import 'jquery.rateit';
-
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
-
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -26,3 +10,18 @@ $.ajaxSetup({
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+import $ from 'jquery';
+import moment from 'moment';
+import 'moment-duration-format';
+import 'moment/locale/zh-cn';
+import 'jquery.rateit';
+
+window.$ = window.jQuery = $;
+window.moment = moment;
+
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
