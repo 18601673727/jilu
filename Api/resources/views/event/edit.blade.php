@@ -10,7 +10,7 @@
     <div class="text-left">
         <div class="weui_cells weui_cells_form">
             <div class="weui_cells_title">个人打分</div>
-            <div class="weui_cells weui_cells_radio">
+            <div class="weui_cell weui_cells_radio">
                 <div id="score"
                      class="rateit svg"
                      data-rateit-value="{{ round($data->score) }}"
@@ -25,7 +25,7 @@
             </div>
 
             <div class="weui_cells_title">备注</div>
-            <div class="weui_cells">
+            <div class="weui_cell">
                 <div class="weui_cell_bd weui_cell_primary">
                     <textarea id="content" class="weui_textarea" placeholder="刺激源 / 体会 / 其他" rows="3">{{ $data->content }}</textarea>
                     <div class="weui_textarea_counter">非必填</div>
@@ -33,7 +33,7 @@
             </div>
 
             <div class="weui_cells_title">该记录</div>
-            <div class="weui_cells weui_cell_switch">
+            <div class="weui_cell weui_cell_switch">
                 <div class="weui_cell_hd weui_cell_primary">是否公开</div>
                 <div class="weui_cell_ft">
                     <input id="published" class="weui_switch" type="checkbox" @if($data->published) checked="checked"@endif>
