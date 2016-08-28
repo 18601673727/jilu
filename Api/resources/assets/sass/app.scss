@@ -1,9 +1,14 @@
 // Wechat UI
 @import "node_modules/weui/dist/style/weui";
-//@import "node_modules/jquery.rateit/scripts/rateit";
 
 // Resets
 @import "resets";
 
+// Utilities
+@import "utils";
+
+// Plugins
+@import "rateit";
+
 // Pages
-@import "welcome";
+@import "event";
