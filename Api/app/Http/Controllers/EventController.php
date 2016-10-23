@@ -17,7 +17,19 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('event.list')->with('data', Event::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get());
+        $data = Event::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+
+        $data->each(function($row, $index) {
+            if ($row->type === 'masturbation') {
+                $row->type = '打灰机';
+            } elseif ($row->type === 'heterosex') {
+                $row->type = '啪啪啪';
+            } elseif ($row->type === 'homosex') {
+                $row->type = 'ASS♂WE♂CAN';
+            }
+        });
+
+        return view('event.list')->with('data', $data);
     }
 
     /**

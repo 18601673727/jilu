@@ -20,14 +20,6 @@
     {{--@endif--}}
 
     @yield('content')
-
-    <div id="toast" style="display: none;">
-        <div class="weui_mask_transparent"></div>
-        <div class="weui_toast">
-            <i class="weui_icon_toast"></i>
-            <p class="weui_toast_content"></p>
-        </div>
-    </div>
 </div>
 
 <script src="{{ elixir('js/app.js') }}"></script>
