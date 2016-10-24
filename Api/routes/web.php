@@ -25,6 +25,7 @@ Route::group(['middleware' => ['wechat.oauth']], function () {
 
     Route::group(['middleware' => ['auth']], function () {
         Route::resource('events', 'EventController');
+        Route::get('nearby', 'NearbyController@index');
     });
 });
 

@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Overtrue\LaravelWechat\ServiceProvider::class,
+        Hootlex\Friendships\FriendshipsServiceProvider::class,
 
         /*
          * Application Service Providers...

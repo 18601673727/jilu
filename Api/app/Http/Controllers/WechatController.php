@@ -21,13 +21,21 @@ class WechatController extends Controller
      */
     public function serve()
     {
-        Log::info('request arrived.'); # 注意：Log 为 Laravel 组件，所以它记的日志去 Laravel 日志看，而不是 EasyWeChat 日志
-
         $this->wechat->server->setMessageHandler(function($message){
-            return "欢迎关注\"记撸\"！";
+            if ($message->MsgType == 'event') {
+                switch ($message->Event) {
+                    case 'subscribe':
+                        return "欢迎关注\"记撸\"！";
+                        break;
+                    case 'location':
+                        session('message', $message);
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+            }
         });
-
-        Log::info('return response.');
 
         return $this->wechat->server->serve();
     }

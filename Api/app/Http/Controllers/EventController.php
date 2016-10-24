@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Event;
+use App\Location;
 
 class EventController extends Controller
 {

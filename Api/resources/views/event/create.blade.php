@@ -23,7 +23,8 @@
         <br><br>
 
         <div class="text-center">
-            <a class="link" href="/events">查看我的记录</a>
+            <a class="link m-h-5" href="/nearby">查看附近的人</a>
+            <a class="link m-h-5" href="/events">查看我的记录</a>
         </div>
     </div>
 @endsection
