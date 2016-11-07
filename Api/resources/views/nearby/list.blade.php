@@ -7,7 +7,7 @@
 @endsection
 
 @section('script')
-    <script src="http://map.qq.com/api/js?v=2.exp&key=DNWBZ-7WLAX-IH44W-7B326-A5TPT-YWBU3"></script>
+    <script src="http://map.qq.com/api/js?v=2.exp&libraries=convertor&key=DNWBZ-7WLAX-IH44W-7B326-A5TPT-YWBU3"></script>
     <script>
         var center = new qq.maps.LatLng(
             {{ $location->latitude }},
