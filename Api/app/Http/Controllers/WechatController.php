@@ -27,7 +27,6 @@ class WechatController extends Controller
             if ($message->MsgType == 'event') {
                 switch ($message->Event) {
                     case 'subscribe':
-                        Log::info('=============== Location is coming...');
                         return "欢迎关注\"记撸\"！";
                         break;
                     case 'location':
@@ -47,7 +46,7 @@ class WechatController extends Controller
 
                         break;
                     default:
-                        # code...
+                        Log::info('=============== Location is coming...');
                         break;
                 }
             }
