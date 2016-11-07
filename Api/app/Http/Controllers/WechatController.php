@@ -43,7 +43,7 @@ class WechatController extends Controller
                             Log::info(json_encode(compact($location, $user)));
 
                         } catch (\Exception $e) {
-                            Log::error($e->getMessage());
+                            Log::info($e->getMessage());
                         }
 
                         Log::info('Nothing wrong...');
