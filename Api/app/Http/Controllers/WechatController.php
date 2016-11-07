@@ -30,15 +30,18 @@ class WechatController extends Controller
                         return "欢迎关注\"记撸\"！";
                         break;
                     case 'location':
-                        $user = User::where('wechat_id', $message->FromUserName)->first();
+                        try {
+                            $user = User::where('wechat_id', $message->FromUserName)->first();
 
-                        $location = $user->locations()->create([
-                            'latitude' => $message->Latitude,
-                            'longitude' => $message->Longitude,
-                            'precision' => $message->Precision,
-                        ]);
-
-                        Log::info(json_encode(compact($location, $user)));
+                            $location = $user->locations()->create([
+                                'latitude' => $message->Latitude,
+                                'longitude' => $message->Longitude,
+                                'precision' => $message->Precision,
+                            ]);
+                        } catch (\Exception $e) {
+                            Log::error($e->getMessage());
+                            Log::info(json_encode(compact($location, $user)));
+                        }
 
                         break;
                     default:
