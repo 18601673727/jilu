@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
 
+use App\User;
+
 class WechatController extends Controller
 {
 
@@ -27,7 +29,7 @@ class WechatController extends Controller
                     'latitude' => $message->Latitude,
                     'longitude' => $message->Longitude,
                     'precision' => $message->Precision,
-                    'id' => App\User::where('wechat_id'. $message->FromUserName)->first()->id,
+                    'id' => User::where('wechat_id'. $message->FromUserName)->first()->id,
                 ]));
 
                 switch ($message->Event) {
