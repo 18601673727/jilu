@@ -14,13 +14,19 @@
             {{ $location->longitude }}
         );
 
+        var convertor = new qq.maps.convertor();
+
+        convertor.translate(center, function(newLL) {
+            alert(newLL);
+        });
+
         var map = new qq.maps.Map(document.getElementById('map'), {
-            center: center,
+            center: newLL,
             zoom: 16
         });
 
         var marker = new qq.maps.Marker({
-            position: center,
+            position: newLL,
             map: map
         });
 
