@@ -40,13 +40,16 @@ class WechatController extends Controller
                             'precision' => $message->Precision,
                         ]);
 
-                        Log::info(json_encode(compact($location, $user)));
+                        Log::info(json_encode([
+                            'l' => $location,
+                            'u' => $user,
+                        ]));
 
-                        Log::info('=============== Nothing wrong...');
+                        Log::info('=============== Location seemed nothing wrong...');
 
                         break;
                     default:
-                        Log::info('=============== Location is coming...');
+                        Log::info('=============== Message is coming...');
                         break;
                 }
             }
