@@ -14,28 +14,26 @@
             {{ $location->longitude }}
         );
 
-        var convertor = new qq.maps.convertor();
-
-        convertor.translate(center, function(newLL) {
+        qq.maps.convertor.translate(center, function(newLL) {
             alert(newLL);
-        });
 
-        var map = new qq.maps.Map(document.getElementById('map'), {
-            center: newLL,
-            zoom: 16
-        });
+            var map = new qq.maps.Map(document.getElementById('map'), {
+                center: newLL,
+                zoom: 16
+            });
 
-        var marker = new qq.maps.Marker({
-            position: newLL,
-            map: map
-        });
+            var marker = new qq.maps.Marker({
+                position: newLL,
+                map: map
+            });
 
 //        var icon = new qq.maps.MarkerImage(
-{{--            {{ session('wechat.oauth_user')->avatar }}--}}
-//        );
+            {{--            {{ session('wechat.oauth_user')->avatar }}--}}
+            //        );
 
 //        marker.setIcon(icon);
 
-        marker.setAnimation(qq.maps.MarkerAnimation.DOWN);
+            marker.setAnimation(qq.maps.MarkerAnimation.DOWN);
+        });
     </script>
 @endsection
