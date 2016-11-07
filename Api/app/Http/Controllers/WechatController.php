@@ -30,6 +30,7 @@ class WechatController extends Controller
                         return "欢迎关注\"记撸\"！";
                         break;
                     case 'location':
+                        Log::info('Location is coming...');
                         try {
                             $user = User::where('wechat_id', $message->FromUserName)->first();
 
@@ -44,6 +45,8 @@ class WechatController extends Controller
                         } catch (\Exception $e) {
                             Log::error($e->getMessage());
                         }
+
+                        Log::info('Nothing wrong...');
 
                         break;
                     default:
