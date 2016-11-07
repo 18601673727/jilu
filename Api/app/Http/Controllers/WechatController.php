@@ -27,7 +27,7 @@ class WechatController extends Controller
                     'latitude' => $message->Latitude,
                     'longitude' => $message->Longitude,
                     'precision' => $message->Precision,
-                    'id' => auth()->user(),
+                    'id' => App\User::where('wechat_id'. $message->FromUserName)->first()->id,
                 ]));
 
                 switch ($message->Event) {
