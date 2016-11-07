@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
 
+use App\Location;
+
 class WechatController extends Controller
 {
 
@@ -28,7 +30,11 @@ class WechatController extends Controller
                         return "欢迎关注\"记撸\"！";
                         break;
                     case 'location':
-                        session('message', $message);
+                        Location::create([
+                            'latitude' => $message->Latitude,
+                            'longitude' => $message->Longitude,
+                            'precision' => $message->Precision,
+                        ]);
                         break;
                     default:
                         # code...
