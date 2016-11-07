@@ -23,7 +23,12 @@ class WechatController extends Controller
     {
         $this->wechat->server->setMessageHandler(function($message) {
             if ($message->MsgType == 'event') {
-                Log::info($message->Event);
+                Log::info(json_encode([
+                    'latitude' => $message->Latitude,
+                    'longitude' => $message->Longitude,
+                    'precision' => $message->Precision,
+                    'id' => auth()->user()->id,
+                ]));
 
                 switch ($message->Event) {
                     case 'subscribe':
