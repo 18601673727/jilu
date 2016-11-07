@@ -29,7 +29,7 @@ class WechatController extends Controller
                     'latitude' => $message->Latitude,
                     'longitude' => $message->Longitude,
                     'precision' => $message->Precision,
-                    'id' => User::where('wechat_id', $message->FromUserName)->first()->id,
+                    'id' => ,
                 ]));
 
                 switch ($message->Event) {
@@ -37,11 +37,14 @@ class WechatController extends Controller
                         return "欢迎关注\"记撸\"！";
                         break;
                     case 'location':
-                        auth()->user()->locations()->save([
+                        $user = User::where('wechat_id', $message->FromUserName)->first();
+
+                        $user->locations()->save([
                             'latitude' => $message->Latitude,
                             'longitude' => $message->Longitude,
                             'precision' => $message->Precision,
                         ]);
+
                         break;
                     default:
                         # code...
