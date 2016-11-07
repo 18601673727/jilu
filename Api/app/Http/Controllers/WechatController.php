@@ -27,26 +27,23 @@ class WechatController extends Controller
             if ($message->MsgType == 'event') {
                 switch ($message->Event) {
                     case 'subscribe':
+                        Log::info('=============== Location is coming...');
                         return "欢迎关注\"记撸\"！";
                         break;
                     case 'location':
-                        Log::info('Location is coming...');
-                        try {
-                            $user = User::where('wechat_id', $message->FromUserName)->first();
+                        Log::info('=============== Location is coming...');
 
-                            $location = $user->locations()->create([
-                                'latitude' => $message->Latitude,
-                                'longitude' => $message->Longitude,
-                                'precision' => $message->Precision,
-                            ]);
+                        $user = User::where('wechat_id', $message->FromUserName)->first();
 
-                            Log::info(json_encode(compact($location, $user)));
+                        $location = $user->locations()->create([
+                            'latitude' => $message->Latitude,
+                            'longitude' => $message->Longitude,
+                            'precision' => $message->Precision,
+                        ]);
 
-                        } catch (\Exception $e) {
-                            Log::info($e->getMessage());
-                        }
+                        Log::info(json_encode(compact($location, $user)));
 
-                        Log::info('Nothing wrong...');
+                        Log::info('=============== Nothing wrong...');
 
                         break;
                     default:
