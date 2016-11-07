@@ -49,7 +49,7 @@ class WechatController extends Controller
 
                         break;
                     default:
-                        Log::info('=============== Message is coming...');
+                        Log::info('=============== Type:'.$message->Event);
                         break;
                 }
             }
