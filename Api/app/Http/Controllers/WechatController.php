@@ -28,6 +28,7 @@ class WechatController extends Controller
                         return "欢迎关注\"记撸\"！";
                         break;
                     case 'location':
+                        Log::info($message);
                         auth()->user()->locations()->save([
                             'latitude' => $message->Latitude,
                             'longitude' => $message->Longitude,
