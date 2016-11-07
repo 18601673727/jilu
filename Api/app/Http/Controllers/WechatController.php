@@ -38,9 +38,11 @@ class WechatController extends Controller
                                 'longitude' => $message->Longitude,
                                 'precision' => $message->Precision,
                             ]);
+
+                            Log::info(json_encode(compact($location, $user)));
+
                         } catch (\Exception $e) {
                             Log::error($e->getMessage());
-                            Log::info(json_encode(compact($location, $user)));
                         }
 
                         break;
