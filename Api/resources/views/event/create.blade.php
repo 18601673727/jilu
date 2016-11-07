@@ -23,7 +23,7 @@
         <br><br>
 
         <div class="text-center">
-            <p>{{ var_dump(session('message')) }}</p>
+            <p>{{ var_dump(auth()->user()->locations) }}</p>
             <a class="link m-h-5" href="/nearby">查看附近的人</a>
             <a class="link m-h-5" href="/events">查看我的记录</a>
         </div>

@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Log;
 
-use App\Location;
-
 class WechatController extends Controller
 {
 
@@ -23,14 +21,14 @@ class WechatController extends Controller
      */
     public function serve()
     {
-        $this->wechat->server->setMessageHandler(function($message){
+        $this->wechat->server->setMessageHandler(function($message) {
             if ($message->MsgType == 'event') {
                 switch ($message->Event) {
                     case 'subscribe':
                         return "欢迎关注\"记撸\"！";
                         break;
                     case 'location':
-                        Location::create([
+                        auth()->user()->locations()->save([
                             'latitude' => $message->Latitude,
                             'longitude' => $message->Longitude,
                             'precision' => $message->Precision,
