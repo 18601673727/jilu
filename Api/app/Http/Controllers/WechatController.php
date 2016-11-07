@@ -25,13 +25,6 @@ class WechatController extends Controller
     {
         $this->wechat->server->setMessageHandler(function($message) {
             if ($message->MsgType == 'event') {
-                Log::info(json_encode([
-                    'latitude' => $message->Latitude,
-                    'longitude' => $message->Longitude,
-                    'precision' => $message->Precision,
-                    'id' => ,
-                ]));
-
                 switch ($message->Event) {
                     case 'subscribe':
                         return "欢迎关注\"记撸\"！";
@@ -39,7 +32,7 @@ class WechatController extends Controller
                     case 'location':
                         $user = User::where('wechat_id', $message->FromUserName)->first();
 
-                        $user->locations()->save([
+                        $user->locations()->create([
                             'latitude' => $message->Latitude,
                             'longitude' => $message->Longitude,
                             'precision' => $message->Precision,
