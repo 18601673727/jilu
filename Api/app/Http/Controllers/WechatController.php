@@ -32,11 +32,13 @@ class WechatController extends Controller
                     case 'location':
                         $user = User::where('wechat_id', $message->FromUserName)->first();
 
-                        $user->locations()->create([
+                        $location = $user->locations()->create([
                             'latitude' => $message->Latitude,
                             'longitude' => $message->Longitude,
                             'precision' => $message->Precision,
                         ]);
+
+                        Log::info(json_encode(['uu'=>$location]));
 
                         break;
                     default:
