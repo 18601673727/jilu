@@ -29,7 +29,7 @@ class WechatController extends Controller
                     case 'subscribe':
                         return "欢迎关注\"记撸\"！";
                         break;
-                    case 'location':
+                    case 'LOCATION':
                         Log::info('=============== Location is coming...');
 
                         $user = User::where('wechat_id', $message->FromUserName)->first();
