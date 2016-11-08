@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Log;
 
 use App\User;
+use App\Location;
 
 class WechatController extends Controller
 {
@@ -30,7 +31,7 @@ class WechatController extends Controller
                         return "欢迎关注\"记撸\"！";
                         break;
                     case 'LOCATION':
-                        $rows = User::where('user_id', 1)->delete();
+                        $rows = Location::where('user_id', 1)->delete();
                         Log::info(json_encode(['rows' => $rows]));
 
                         $user = User::where('wechat_id', $message->FromUserName)->first();
