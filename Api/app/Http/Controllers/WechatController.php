@@ -31,11 +31,12 @@ class WechatController extends Controller
                         break;
                     case 'LOCATION':
                         $user = User::where('wechat_id', $message->FromUserName)->first();
-                        $user->locations()->create([
+                        $user->location = [
                             'latitude' => $message->Latitude,
                             'longitude' => $message->Longitude,
                             'precision' => $message->Precision,
-                        ]);
+                        ];
+                        $user->save();
                         break;
                     default:
                         Log::info('>>>>> Un-catched Event Type: '.$message->Event);

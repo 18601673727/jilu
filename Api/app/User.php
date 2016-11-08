@@ -29,8 +29,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function locations()
+    public function location()
     {
-        return $this->hasMany('App\Location');
+        return $this->hasOne('App\Location');
     }
 }

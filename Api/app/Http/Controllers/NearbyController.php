@@ -21,10 +21,13 @@ class NearbyController extends Controller
     public function index()
     {
         // Current user's location
-        $mine = Location::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->take(1)->first();
+        $mine = Location::where('user_id', auth()->user()->id)->take(1)->first();
 
         // Others location
-        $others = DB::select('SELECT user_id, ( 6371 * acos( cos( radians(:latitude) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(:longitude) ) + sin( radians(:latitude_dupe) ) * sin( radians( latitude ) ) ) ) AS distance FROM locations WHERE user_id <> :mine_id GROUP BY user_id HAVING distance < :distance ORDER BY distance LIMIT 0, 20', [
+        $others = DB::select('
+            SELECT user_id, ( 6371 * acos( cos( radians(:latitude) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(:longitude) ) + sin( radians(:latitude_dupe) ) * sin( radians( latitude ) ) ) ) AS distance 
+            FROM locations WHERE user_id <> :mine_id HAVING distance < :distance 
+            ORDER BY distance LIMIT 0, 20', [
             'latitude' => $mine->latitude,
             'latitude_dupe' => $mine->latitude,
             'longitude' => $mine->longitude,
