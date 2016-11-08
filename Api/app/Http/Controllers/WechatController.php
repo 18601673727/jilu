@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Log;
 
 use App\User;
+use App\Location;
 
 class WechatController extends Controller
 {
@@ -31,7 +32,7 @@ class WechatController extends Controller
                         break;
                     case 'LOCATION':
                         $user = User::where('wechat_id', $message->FromUserName)->first();
-                        $user->location()->create([
+                        Location::updateOrCreate(['user_id' => $user->id], [
                             'latitude' => $message->Latitude,
                             'longitude' => $message->Longitude,
                             'precision' => $message->Precision,
