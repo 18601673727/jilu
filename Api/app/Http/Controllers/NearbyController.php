@@ -23,11 +23,9 @@ class NearbyController extends Controller
         // Current user's location
         $mine = Location::where('user_id', auth()->user()->id)->take(1)->first();
 
-//        DB::select('delete from locations where user_id = :user_id', [user_id => 1]);
-
         // Others location
         $others = DB::select('
-            SELECT user_id, ( 6371 * acos( cos( radians(:latitude) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(:longitude) ) + sin( radians(:latitude_dupe) ) * sin( radians( latitude ) ) ) ) AS distance
+            SELECT user_id, latitude, longitude, ( 6371 * acos( cos( radians(:latitude) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(:longitude) ) + sin( radians(:latitude_dupe) ) * sin( radians( latitude ) ) ) ) AS distance
             FROM locations WHERE user_id <> :mine_id HAVING distance < :distance
             ORDER BY distance LIMIT 0, 20', [
             'latitude' => $mine->latitude,
@@ -37,11 +35,7 @@ class NearbyController extends Controller
             'mine_id' => auth()->user()->id,
         ]);
 
-        Log::info(json_encode(['result'=>$others]));
-
-        return view('nearby.list')
-            ->with('js', $this->wechat->js)
-            ->with('others', $others)
-            ->with('mine', $mine);
+        // TODO: check if $others is null?
+        return view('nearby.list')->with('locations', array_unshift($others, $mine));
     }
 }
