@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Log;
 
 use App\User;
+use App\Location;
 
 class WechatController extends Controller
 {
@@ -41,7 +42,7 @@ class WechatController extends Controller
                         if (is_null($user->location)) {
                             $user->location()->create($newLocation);
                         } else {
-                            $user->location->update($newLocation);
+                            Location::where('user_id', $user->id)->update($newLocation);
                         }
 
                         break;
