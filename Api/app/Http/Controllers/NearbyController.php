@@ -24,7 +24,7 @@ class NearbyController extends Controller
         $mine = Location::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->take(1)->first();
 
         // Others location
-        $others = DB::select('SELECT user_id, ( 6371 * acos( cos( radians(:latitude) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(:longitude) ) + sin( radians(:latitude) ) * sin( radians( lat ) ) ) ) AS distance FROM locations HAVING distance < :distance ORDER BY distance LIMIT 0, 20', [
+        $others = DB::select('SELECT user_id, ( 6371 * acos( cos( radians(:latitude) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(:longitude) ) + sin( radians(:latitude) ) * sin( radians( latitude ) ) ) ) AS distance FROM locations HAVING distance < :distance ORDER BY distance LIMIT 0, 20', [
             'latitude' => $mine->latitude,
             'longitude' => $mine->longitude,
             'distance' => 50,
