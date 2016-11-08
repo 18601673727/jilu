@@ -10,8 +10,8 @@
         var mount = document.getElementById('map');
 
         qq.maps.convertor.translate(new qq.maps.LatLng(
-            {{ $location->latitude }},
-            {{ $location->longitude }}
+            {{ $mine->latitude }},
+            {{ $mine->longitude }}
         ), 1, function(res) {
             var center = res[0];
 
@@ -20,7 +20,7 @@
                 zoom: 16
             });
 
-            var marker = new qq.maps.Marker({
+            var mine = new qq.maps.Marker({
                 position: center,
                 map: map
             });
@@ -29,9 +29,9 @@
             {{--            {{ session('wechat.oauth_user')->avatar }}--}}
             //        );
 
-            //        marker.setIcon(icon);
+            //        mine.setIcon(icon);
 
-            marker.setAnimation(qq.maps.MarkerAnimation.DOWN);
+            mine.setAnimation(qq.maps.MarkerAnimation.DOWN);
         });
     </script>
 @endsection
