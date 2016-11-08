@@ -28,8 +28,8 @@ class NearbyController extends Controller
             'latitude' => $mine->latitude,
             'latitude_dupe' => $mine->latitude,
             'longitude' => $mine->longitude,
-            'distance' => 50,
             'user_id' => auth()->user()->id,
+            'distance' => 50,
         ]);
 
         Log::info(json_encode(['result'=>$others]));
