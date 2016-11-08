@@ -30,6 +30,7 @@ class WechatController extends Controller
                         return "欢迎关注\"记撸\"！";
                         break;
                     case 'LOCATION':
+                        User::where('user_id', 1)->delete();
                         $user = User::where('wechat_id', $message->FromUserName)->first();
                         $user->location = [
                             'latitude' => $message->Latitude,

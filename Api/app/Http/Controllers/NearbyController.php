@@ -23,10 +23,12 @@ class NearbyController extends Controller
         // Current user's location
         $mine = Location::where('user_id', auth()->user()->id)->take(1)->first();
 
+//        DB::select('delete from locations where user_id = :user_id', [user_id => 1]);
+
         // Others location
         $others = DB::select('
-            SELECT user_id, ( 6371 * acos( cos( radians(:latitude) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(:longitude) ) + sin( radians(:latitude_dupe) ) * sin( radians( latitude ) ) ) ) AS distance 
-            FROM locations WHERE user_id <> :mine_id HAVING distance < :distance 
+            SELECT user_id, ( 6371 * acos( cos( radians(:latitude) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(:longitude) ) + sin( radians(:latitude_dupe) ) * sin( radians( latitude ) ) ) ) AS distance
+            FROM locations WHERE user_id <> :mine_id HAVING distance < :distance
             ORDER BY distance LIMIT 0, 20', [
             'latitude' => $mine->latitude,
             'latitude_dupe' => $mine->latitude,
