@@ -37,7 +37,7 @@ class NearbyController extends Controller
 
         $locations = array_unshift($others, $mine);
 
-        Log::info(json_encode(['locations' => $locations]));
+        Log::info(var_export($locations));
 
         // TODO: check if $others is null?
         return view('nearby.list')->with('locations', $locations);
