@@ -24,14 +24,15 @@ class NearbyController extends Controller
         $mine = Location::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->take(1)->first();
 
         // Others location
-        $others = DB::select('SELECT user_id, ( 6371 * acos( cos( radians(:latitude) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(:longitude) ) + sin( radians(:latitude_dupe) ) * sin( radians( latitude ) ) ) ) AS distance FROM locations HAVING distance < :distance ORDER BY distance LIMIT 0, 20', [
+        $others = DB::select('SELECT user_id, ( 6371 * acos( cos( radians(:latitude) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(:longitude) ) + sin( radians(:latitude_dupe) ) * sin( radians( latitude ) ) ) ) AS distance FROM locations HAVING distance < :distance WHERE user_id NOT :user_id GROUP BY user_id ORDER BY distance LIMIT 0, 20', [
             'latitude' => $mine->latitude,
             'latitude_dupe' => $mine->latitude,
             'longitude' => $mine->longitude,
             'distance' => 50,
+            'user_id' => auth()->user()->id,
         ]);
 
-        Log::info(var_dump($others));
+        Log::info(json_encode(['result'=>$others]));
 
         return view('nearby.list')
             ->with('js', $this->wechat->js)
