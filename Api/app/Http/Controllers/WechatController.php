@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Log;
 
 use App\User;
-use App\Location;
 
 class WechatController extends Controller
 {
@@ -31,16 +30,12 @@ class WechatController extends Controller
                         return "欢迎关注\"记撸\"！";
                         break;
                     case 'LOCATION':
-                        $rows = Location::where('user_id', 1)->delete();
-                        Log::info(json_encode(['rows' => $rows]));
-
                         $user = User::where('wechat_id', $message->FromUserName)->first();
-                        $user->location = [
+                        $user->location()->create([
                             'latitude' => $message->Latitude,
                             'longitude' => $message->Longitude,
                             'precision' => $message->Precision,
-                        ];
-                        $user->save();
+                        ]);
                         break;
                     default:
                         Log::info('>>>>> Un-catched Event Type: '.$message->Event);
