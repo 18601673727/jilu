@@ -35,11 +35,9 @@ class NearbyController extends Controller
             'mine_id' => auth()->user()->id,
         ]);
 
-        $locations = array_unshift($others, $mine);
-
-        Log::info(var_export($locations));
+        array_unshift($others, $mine);
 
         // TODO: check if $others is null?
-        return view('nearby.list')->with('locations', $locations);
+        return view('nearby.list')->with('locations', $others);
     }
 }
