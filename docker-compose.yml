@@ -16,6 +16,8 @@ services:
       MYSQL_ROOT_PASSWORD: mysqlpassword
     networks:
       - data-tier
+    ports:
+      - "8347:3306"
 
   laravel:
     image: webdevops/php-nginx:alpine-3

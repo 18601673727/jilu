@@ -15,9 +15,6 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-//            $table->string('username')->nullable();
-//            $table->string('password')->nullable();
-//            $table->string('email')->unique();
             $table->string('wechat_id')->unique();
             $table->rememberToken();
             $table->timestamps();

@@ -16,8 +16,8 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'wechat_id',
+    protected $guarded = [
+        'remember_token',
     ];
 
     /**
