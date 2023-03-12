@@ -17,7 +17,7 @@ services:
     networks:
       - data-tier
     ports:
-      - "8347:3306"
+      - "3307:3306"
 
   laravel:
     image: webdevops/php-nginx:alpine-3
